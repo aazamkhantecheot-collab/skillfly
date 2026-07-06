@@ -1,0 +1,212 @@
+.footer {
+  background-color: var(--text-dark);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 80px 0 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.topSection {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 1.25fr;
+  gap: 40px;
+}
+
+.logo {
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.logoImg {
+  height: 110px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.logoAccent {
+  color: var(--primary);
+}
+
+.brandDesc {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  max-width: 280px;
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--bg-white);
+  transition: var(--transition);
+}
+
+.socialBtn:hover {
+  background-color: var(--primary);
+  transform: translateY(-3px);
+}
+
+.colTitle {
+  color: var(--bg-white);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.linksList a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+}
+
+.linksList a:hover {
+  color: var(--primary);
+  padding-left: 5px;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactItem {
+  display: flex;
+  gap: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.contactIcon {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.emails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.emails a {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.emails a:hover {
+  color: var(--primary);
+}
+
+.newsDesc {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.newsForm {
+  display: flex;
+  position: relative;
+}
+
+.newsInput {
+  width: 100%;
+  padding: 14px 50px 14px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--bg-white);
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.newsInput:focus {
+  border-color: var(--primary);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.newsSubmit {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.newsSubmit:hover {
+  background-color: var(--primary-hover);
+}
+
+.bottomSection {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 0.88rem;
+}
+
+.copyright {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0;
+}
+
+.legalLinks a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.legalLinks a:hover {
+  color: var(--primary);
+}
+
+.separator {
+  margin: 0 10px;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive details */
+@media (max-width: 992px) {
+  .topSection {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .topSection {
+    grid-template-columns: 1fr;
+  }
+  .bottomSection {
+    flex-direction: column;
+    text-align: center;
+  }
+}

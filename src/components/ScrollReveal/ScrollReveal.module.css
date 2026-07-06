@@ -1,0 +1,33 @@
+.reveal {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* Specific Animations initial states */
+.fade-in {
+  /* opacity handled by .reveal */
+}
+
+.slide-up {
+  transform: translateY(50px);
+}
+
+.slide-in-left {
+  transform: translateX(-50px);
+}
+
+.slide-in-right {
+  transform: translateX(50px);
+}
+
+.scale-up {
+  transform: scale(0.94);
+}
+
+/* visible defined last so it overrides all initial states without using transform: important */
+.visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1);
+}

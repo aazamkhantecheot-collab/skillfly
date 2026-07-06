@@ -1,0 +1,339 @@
+.aboutPage {
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background-color: rgba(var(--primary-rgb), 0.08);
+  color: var(--primary);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* Intro Section */
+.intro {
+  background-color: var(--bg-white);
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.introLeft h2 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+}
+
+.introLeft p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.introRight {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.visionCard {
+  padding: 36px;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.05) 0%, rgba(var(--secondary-rgb), 0.02) 100%);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.visionCard h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.visionCard p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Values Section */
+.values {
+  background-color: var(--bg-light);
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.sectionHeader p {
+  font-size: 1.1rem;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.valueCard {
+  background-color: var(--bg-white);
+  padding: 40px 36px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.valueCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--hover-shadow);
+  border-color: rgba(var(--primary-rgb), 0.15);
+}
+
+.valueIcon {
+  color: var(--primary);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: rgba(var(--primary-rgb), 0.06);
+}
+
+.valueCard h3 {
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+}
+
+.valueCard p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Founder Section */
+.founder {
+  background-color: var(--bg-white);
+}
+
+.founderGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.75fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.founderImageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.founderCard {
+  width: 100%;
+  max-width: 380px;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 40px 24px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  transition: var(--transition);
+}
+
+.founderCard::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: 12px;
+  bottom: 12px;
+  border: 2px dashed rgba(var(--primary-rgb), 0.15);
+  border-radius: var(--border-radius);
+  z-index: -1;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.founderCard:hover::before {
+  transform: translate(6px, 6px);
+  border-color: var(--primary);
+  border-style: solid;
+}
+
+.avatarWrapper {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 24px auto;
+  border: 4px solid var(--border-color);
+  box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.founderImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.founderCard h3 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.founderTitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.founderTag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  background-color: rgba(var(--primary-rgb), 0.05);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.founderContent h2 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+}
+
+.quoteWrapper {
+  position: relative;
+  padding-left: 20px;
+}
+
+.founderQuoteIcon {
+  color: rgba(var(--primary-rgb), 0.15);
+  margin-bottom: 16px;
+}
+
+.founderText {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.signatureBlock {
+  border-top: 1px solid var(--border-color);
+  padding-top: 24px;
+  margin-top: 30px;
+}
+
+.signatureName {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.signatureTitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* Responsive details */
+@media (max-width: 992px) {
+  .introGrid, .founderGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .founderCard {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .introLeft h2, .founderContent h2 {
+    font-size: 1.7rem;
+  }
+  .avatarWrapper {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 16px;
+  }
+  .founderCard {
+    padding: 24px 16px;
+  }
+  .founderCard::before {
+    top: -6px;
+    left: -6px;
+    right: 6px;
+    bottom: 6px;
+  }
+}
+
+.speechBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.speechBtn:hover {
+  background-color: var(--primary);
+  color: var(--bg-white);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.activeSentence {
+  background-color: rgba(var(--primary-rgb), 0.06);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.activeWord {
+  background-color: rgba(var(--primary-rgb), 0.22);
+  color: var(--text-dark);
+  border-radius: 4px;
+  transition: background-color 0.1s ease;
+}
