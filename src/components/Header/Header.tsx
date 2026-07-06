@@ -31,7 +31,7 @@ export default function Header() {
     setIsMobileServicesOpen(false);
   }, [pathname]);
 
-  const isServicesActive = pathname === '/recruitment-talent-solutions' || pathname === '/hr-operations-compliance';
+  const isServicesActive = pathname === '/recruitment-talent-solutions' || pathname === '/hr-operations-compliance' || pathname === '/re-employment-ex-service';
 
   return (
     <header className={`${styles.header} ${isStuck ? styles.stuck : ''}`}>
@@ -71,6 +71,14 @@ export default function Header() {
                     className={`${styles.dropdownLink} ${pathname === '/hr-operations-compliance' ? styles.dropdownLinkActive : ''}`}
                   >
                     HR Operations & Compliance
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/re-employment-ex-service" 
+                    className={`${styles.dropdownLink} ${pathname === '/re-employment-ex-service' ? styles.dropdownLinkActive : ''}`}
+                  >
+                    Re-employment for Ex-Services
                   </Link>
                 </li>
               </ul>
@@ -143,6 +151,14 @@ export default function Header() {
                   className={`${styles.mobileSubNavLink} ${pathname === '/hr-operations-compliance' ? styles.mobileSubActiveLink : ''}`}
                 >
                   HR Operations & Compliance
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/re-employment-ex-service" 
+                  className={`${styles.mobileSubNavLink} ${pathname === '/re-employment-ex-service' ? styles.mobileSubActiveLink : ''}`}
+                >
+                  Re-employment for Ex-Services
                 </Link>
               </li>
             </ul>

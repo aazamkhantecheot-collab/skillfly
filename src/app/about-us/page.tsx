@@ -1,33 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PageHeader from '@/components/PageHeader/PageHeader';
-import { ShieldCheck, Cpu, RefreshCw, Quote, Volume2, VolumeX } from 'lucide-react';
+import { ShieldCheck, Cpu, RefreshCw, Quote } from 'lucide-react';
 import styles from './About.module.css';
 import ScrollReveal from '@/components/ScrollReveal/ScrollReveal';
 
 export default function AboutUs() {
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [tokens, setTokens] = useState<{ start: number; end: number; globalIdx: number; sentenceIdx: number }[]>([]);
-  
-  interface WordNode {
-    word: string;
-    globalIdx: number;
-    sentenceIdx: number;
-  }
-  interface SentenceNode {
-    words: WordNode[];
-    sentenceIdx: number;
-  }
-  interface ParagraphNode {
-    sentences: SentenceNode[];
-    paragraphIdx: number;
-  }
-
-  const [docStructure, setDocStructure] = useState<ParagraphNode[]>([]);
-  const [activeWordIdx, setActiveWordIdx] = useState<number | null>(null);
-  const [activeSentenceIdx, setActiveSentenceIdx] = useState<number | null>(null);
-
   const values = [
     {
       icon: <RefreshCw size={28} />,
@@ -51,152 +30,6 @@ export default function AboutUs() {
     `Skillfly HR Solutions was founded on the belief that talent is our nation’s greatest resource. My vision is to harness this potential and create meaningful employment opportunities that empower individuals while driving organizational success. By channeling and maximizing human potential, we aim to provide our clients with talent solutions that not only fit their immediate needs but also contribute to their long-term growth and resilience.`,
     `Throughout my journey, I have witnessed the profound impact of matching the right people with the right opportunities. At Skillfly, we are committed to ensuring that each placement is not only a job but a path to personal and professional growth. Our goal is to enable people to thrive, support organizations in their mission, and contribute to the broader vision of a more prosperous, resourceful, and resilient economy.`
   ];
-
-  const fullText = paragraphs.join(' ');
-
-  // Compute character ranges for sentence & word tokens
-  useEffect(() => {
-    const pNodes: ParagraphNode[] = [];
-    const wordTokens: { word: string; start: number; end: number; globalIdx: number; sentenceIdx: number }[] = [];
-    
-    let absoluteCharCount = 0;
-    let globalWordCounter = 0;
-    let globalSentenceCounter = 0;
-
-    paragraphs.forEach((pText, pIdx) => {
-      // Split paragraph into sentences, keeping punctuation
-      const sentences = pText.match(/[^.!?]+[.!?]+(?:\s+|$)/g) || [pText];
-      const sNodes: SentenceNode[] = [];
-
-      sentences.forEach((sText) => {
-        // Split sentence into words & whitespace
-        const words = sText.split(/(\s+)/);
-        const wNodes: WordNode[] = [];
-
-        words.forEach((w) => {
-          const start = absoluteCharCount;
-          const end = start + w.length;
-          absoluteCharCount = end;
-
-          if (w.trim().length > 0) {
-            const tokenIdx = globalWordCounter++;
-            wordTokens.push({
-              word: w,
-              start,
-              end,
-              globalIdx: tokenIdx,
-              sentenceIdx: globalSentenceCounter
-            });
-
-            wNodes.push({
-              word: w,
-              globalIdx: tokenIdx,
-              sentenceIdx: globalSentenceCounter
-            });
-          } else {
-            // Whitespace nodes are preserved in layout but not tokenized
-            wNodes.push({
-              word: w,
-              globalIdx: -1,
-              sentenceIdx: globalSentenceCounter
-            });
-          }
-        });
-
-        sNodes.push({
-          words: wNodes,
-          sentenceIdx: globalSentenceCounter
-        });
-
-        globalSentenceCounter++;
-      });
-
-      pNodes.push({
-        sentences: sNodes,
-        paragraphIdx: pIdx
-      });
-
-      // Account for paragraph space character if joined by space
-      absoluteCharCount += 1;
-    });
-
-    setTokens(wordTokens);
-    setDocStructure(pNodes);
-  }, []);
-
-  // Handle Text-to-Speech
-  const toggleSpeech = () => {
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      if (isSpeaking) {
-        window.speechSynthesis.cancel();
-        setIsSpeaking(false);
-        setActiveWordIdx(null);
-        setActiveSentenceIdx(null);
-      } else {
-        // ALWAYS cancel any existing speech to prevent conflicting voices overlapping
-        window.speechSynthesis.cancel();
-
-        const utterance = new SpeechSynthesisUtterance(fullText);
-        
-        // Find a male voice
-        const voices = window.speechSynthesis.getVoices();
-        
-        // Prioritize David/Microsoft local voices as they reliably support onboundary events (highlighting)
-        // Cloud voices (like Google UK/US) sometimes do not fire onboundary, causing the "no highlight" issue.
-        const maleVoice = voices.find(v => {
-          const nameLower = v.name.toLowerCase();
-          return nameLower.includes('david') || nameLower.includes('mark') || (nameLower.includes('microsoft') && nameLower.includes('male'));
-        }) || voices.find(v => {
-          const nameLower = v.name.toLowerCase();
-          return v.localService && (nameLower.includes('male') || nameLower.includes('english m'));
-        }) || voices[0];
-
-        if (maleVoice) {
-          utterance.voice = maleVoice;
-        }
-
-        utterance.pitch = 0.82; // Deeper manly pitch
-        utterance.rate = 0.90;  // Professional speed
-
-        utterance.onboundary = (event) => {
-          if (event.name === 'word') {
-            const charIndex = event.charIndex;
-            const match = tokens.find(t => charIndex >= t.start && charIndex < t.end);
-            if (match) {
-              setActiveWordIdx(match.globalIdx);
-              setActiveSentenceIdx(match.sentenceIdx);
-            }
-          }
-        };
-
-        utterance.onend = () => {
-          setIsSpeaking(false);
-          setActiveWordIdx(null);
-          setActiveSentenceIdx(null);
-        };
-        utterance.onerror = () => {
-          setIsSpeaking(false);
-          setActiveWordIdx(null);
-          setActiveSentenceIdx(null);
-        };
-
-        setIsSpeaking(true);
-        window.speechSynthesis.speak(utterance);
-      }
-    }
-  };
-
-  // Initialize voices and cancel speech on unmount
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.getVoices(); // Force load voices early
-    }
-    return () => {
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, []);
 
   return (
     <div className={styles.aboutPage}>
@@ -288,47 +121,13 @@ export default function AboutUs() {
               <ScrollReveal animation="slide-in-right">
                 <span className={styles.badge}>Our Leader</span>
                 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px', flexWrap: 'wrap', marginBottom: '24px' }}>
-                  <h2 style={{ margin: 0 }}>Message From Our Founder</h2>
-                  <button 
-                    className={styles.speechBtn} 
-                    onClick={toggleSpeech}
-                    aria-label={isSpeaking ? "Stop voice synthesis reader" : "Start voice synthesis reader"}
-                  >
-                    {isSpeaking ? <VolumeX size={18} /> : <Volume2 size={18} />}
-                    <span>{isSpeaking ? 'Stop Audio' : 'Listen Message'}</span>
-                  </button>
-                </div>
+                <h2 style={{ marginBottom: '24px' }}>Message From Our Founder</h2>
 
                 <div className={styles.quoteWrapper}>
                   <Quote size={32} className={styles.founderQuoteIcon} />
-                  {docStructure.map((pNode) => (
-                    <p key={pNode.paragraphIdx} className={styles.founderText}>
-                      {pNode.sentences.map((sNode) => {
-                        const isSentenceActive = sNode.sentenceIdx === activeSentenceIdx;
-                        
-                        return (
-                          <span 
-                            key={sNode.sentenceIdx} 
-                            className={isSentenceActive ? styles.activeSentence : ''}
-                          >
-                            {sNode.words.map((wNode, wIdx) => {
-                              if (wNode.globalIdx === -1) {
-                                return wNode.word; // whitespace
-                              }
-                              const isWordActive = wNode.globalIdx === activeWordIdx;
-                              return (
-                                <span 
-                                  key={wIdx} 
-                                  className={isWordActive ? styles.activeWord : ''}
-                                >
-                                  {wNode.word}
-                                </span>
-                              );
-                            })}
-                          </span>
-                        );
-                      })}
+                  {paragraphs.map((pText, pIdx) => (
+                    <p key={pIdx} className={styles.founderText}>
+                      {pText}
                     </p>
                   ))}
                   <div className={styles.signatureBlock}>

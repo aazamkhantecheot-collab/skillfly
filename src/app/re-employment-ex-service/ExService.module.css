@@ -1,0 +1,439 @@
+.exPage {
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background-color: rgba(var(--primary-rgb), 0.08);
+  color: var(--primary);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* Programs Section */
+.programs {
+  background-color: var(--bg-white);
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 50px auto;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.sectionHeader p {
+  font-size: 1.1rem;
+}
+
+.programsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.programCard {
+  background-color: var(--bg-white);
+  padding: 36px 24px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.programCard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.programCard:hover::after {
+  transform: scaleX(1);
+}
+
+.programCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(var(--primary-rgb), 0.08);
+  border-color: rgba(var(--primary-rgb), 0.2);
+}
+
+.programIcon {
+  color: var(--primary);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background-color: rgba(var(--primary-rgb), 0.06);
+}
+
+.programCard h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.programCard p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  color: var(--text-muted);
+}
+
+/* Banner Section */
+.banner {
+  background: linear-gradient(135deg, var(--text-dark) 0%, #1e4533 50%, var(--primary) 100%);
+  padding: 70px 0;
+  text-align: center;
+  color: var(--bg-white);
+}
+
+.bannerContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bannerContent h2 {
+  font-size: 2.25rem;
+  color: var(--bg-white);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.bannerContent p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0;
+}
+
+/* Transition Section */
+.transition {
+  background-color: var(--bg-white);
+}
+
+.transitionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.transitionLeft h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.transitionLeft p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.transitionList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.transitionList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.checkIcon {
+  color: var(--primary);
+}
+
+.transitionRight {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.transitionCard {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-light);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.transitionCard::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.transitionCard:hover::after {
+  transform: scaleY(1);
+}
+
+.transitionCard:hover {
+  transform: translateX(8px);
+  box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.06);
+  border-color: rgba(var(--primary-rgb), 0.15);
+  background-color: var(--bg-white);
+}
+
+.transitionIcon {
+  color: var(--primary);
+  background-color: rgba(var(--primary-rgb), 0.06);
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.transitionCard h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.transitionCard p {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* Testimonials */
+.testimonials {
+  background-color: var(--bg-light);
+}
+
+.carouselContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto 0 auto;
+  min-height: 380px;
+}
+
+.testimonialsGrid {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonialCard {
+  background-color: var(--bg-white);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  position: absolute;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity, filter;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.activeCard {
+  transform: scale(1.1) translate3d(0, 0, 0);
+  opacity: 1;
+  z-index: 10;
+  filter: none;
+  pointer-events: auto;
+  box-shadow: 0 20px 45px rgba(var(--primary-rgb), 0.12);
+  border-color: rgba(var(--primary-rgb), 0.2);
+}
+
+.leftCard {
+  transform: scale(0.88) translate3d(-35%, 0, 0);
+  opacity: 0.4;
+  z-index: 5;
+  filter: blur(2px);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.rightCard {
+  transform: scale(0.88) translate3d(35%, 0, 0);
+  opacity: 0.4;
+  z-index: 5;
+  filter: blur(2px);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.centerCard {
+  transform: scale(1) translate3d(0, 0, 0);
+}
+
+.navButton {
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--card-shadow);
+  z-index: 15;
+  margin: 0 10px;
+}
+
+.navButton:hover {
+  background-color: var(--primary);
+  color: var(--bg-white);
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+.quoteIcon {
+  color: rgba(var(--primary-rgb), 0.1);
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.quoteText {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.quoteAuthor {
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+.quoteAuthor h4 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.quoteAuthor span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+}
+
+/* Responsive details */
+@media (max-width: 1200px) {
+  .programsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .transitionGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .programsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .programCard {
+    padding: 22px 20px;
+  }
+  .transitionCard {
+    padding: 18px;
+  }
+  .transitionLeft h2, .sectionHeader h2 {
+    font-size: 1.7rem;
+  }
+  
+  .leftCard {
+    transform: scale(0.85) translate3d(-35%, 0, 0);
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+  
+  .rightCard {
+    transform: scale(0.85) translate3d(35%, 0, 0);
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+  
+  .navButton {
+    width: 38px;
+    height: 38px;
+    margin: 0 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leftCard {
+    transform: scale(0.75) translate3d(-40%, 0, 0);
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+  .rightCard {
+    transform: scale(0.75) translate3d(40%, 0, 0);
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+  .centerCard {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  .testimonialCard {
+    padding: 16px;
+  }
+  .testimonialsGrid {
+    height: 280px;
+  }
+  .carouselContainer {
+    min-height: 320px;
+  }
+}

@@ -303,37 +303,3 @@
   }
 }
 
-.speechBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--bg-light);
-  border: 1px solid var(--border-color);
-  color: var(--primary);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.speechBtn:hover {
-  background-color: var(--primary);
-  color: var(--bg-white);
-  border-color: var(--primary);
-  transform: translateY(-2px);
-}
-
-.activeSentence {
-  background-color: rgba(var(--primary-rgb), 0.06);
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
-.activeWord {
-  background-color: rgba(var(--primary-rgb), 0.22);
-  color: var(--text-dark);
-  border-radius: 4px;
-  transition: background-color 0.1s ease;
-}

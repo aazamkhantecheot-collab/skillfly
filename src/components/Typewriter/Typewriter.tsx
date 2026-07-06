@@ -20,25 +20,35 @@ export default function Typewriter({
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const fullWord = words[currentWordIdx];
     let timer: NodeJS.Timeout;
+    const fullWord = words[currentWordIdx];
 
-    if (isDeleting) {
+    // Pause when the word is fully typed
+    if (!isDeleting && currentText === fullWord) {
       timer = setTimeout(() => {
-        setCurrentText(prev => prev.slice(0, -1));
-      }, deletingSpeed);
-    } else {
-      timer = setTimeout(() => {
-        setCurrentText(fullWord.slice(0, currentText.length + 1));
-      }, typingSpeed);
+        setIsDeleting(true);
+      }, delay);
+      return () => clearTimeout(timer);
     }
 
-    if (!isDeleting && currentText === fullWord) {
-      timer = setTimeout(() => setIsDeleting(true), delay);
-    } else if (isDeleting && currentText === '') {
+    // Switch to the next word once deleting is done
+    if (isDeleting && currentText === '') {
       setIsDeleting(false);
       setCurrentWordIdx(prev => (prev + 1) % words.length);
+      return;
     }
+
+    // Handle character typing or deleting tick
+    const speed = isDeleting ? deletingSpeed : typingSpeed;
+    timer = setTimeout(() => {
+      setCurrentText(prev => {
+        if (isDeleting) {
+          return prev.slice(0, -1);
+        } else {
+          return fullWord.slice(0, prev.length + 1);
+        }
+      });
+    }, speed);
 
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, currentWordIdx, words, typingSpeed, deletingSpeed, delay]);
