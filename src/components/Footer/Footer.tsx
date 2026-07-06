@@ -46,6 +46,7 @@ export default function Footer() {
               <li><Link href="/about-us">About Us</Link></li>
               <li><Link href="/recruitment-talent-solutions">Recruitment Solutions</Link></li>
               <li><Link href="/hr-operations-compliance">HR Operations & Compliance</Link></li>
+              <li><Link href="/re-employment-ex-service">Ex-Servicemen Re-employment</Link></li>
               <li><Link href="/contact-us">Contact Us</Link></li>
             </ul>
           </div>
